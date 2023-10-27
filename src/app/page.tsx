@@ -1,27 +1,33 @@
 import { use } from "react";
 
 import prisma from "@/db";
-import { revalidatePath } from "next/cache";
+
+import { createUser, deleteUser } from "./actions";
 
 const HomePage: React.FC = () => {
-  const users = use(prisma.user.findMany({ cacheStrategy: { ttl: 60 } }));
-
-  const createUser = async () => {
-    "use server";
-
-    await prisma.user.create({
-      data: { id: new Date().getTime().toString() },
-    });
-    revalidatePath("/", "page");
-  };
+  const users = use(prisma.user.findMany());
 
   return (
     <main>
       {`HOME PAGE`}
-      <div>{JSON.stringify(users)}</div>
       <form action={createUser}>
         <button type="submit">Create User</button>
       </form>
+      <ul className="flex flex-col">
+        {users.map((user) => {
+          return (
+            <li key={user.id}>
+              <div className="flex gap-x-2.5">
+                {user.id}
+                <form action={deleteUser}>
+                  <input type="hidden" name="id" defaultValue={user.id} />
+                  <button type="submit">X</button>
+                </form>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </main>
   );
 };
