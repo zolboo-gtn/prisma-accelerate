@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { use } from "react";
 
 import { db } from "@/database/drizzle";
@@ -10,6 +11,7 @@ const DrizzlePage: React.FC = () => {
   return (
     <main>
       {`DrizzlePage`}
+      <Link href="/prisma">{`to PrismaPage`}</Link>
       <form action={createUser}>
         <button type="submit">Create User</button>
       </form>
