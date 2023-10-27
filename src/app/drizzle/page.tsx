@@ -3,9 +3,11 @@ import { use } from "react";
 
 import { db } from "@/database/drizzle";
 
-import { createUser, deleteUser } from "./actions";
+import { createUser } from "./actions";
+import { UserCard } from "./user_card";
+import { CreateButton } from "./create_button";
 
-const DrizzlePage: React.FC = () => {
+const DrizzlePage: React.Page = () => {
   const users = use(db.query.user.findMany());
 
   return (
@@ -13,19 +15,13 @@ const DrizzlePage: React.FC = () => {
       <h1>{`DrizzlePage`}</h1>
       <Link href="/prisma">{`to PrismaPage`}</Link>
       <form action={createUser}>
-        <button type="submit">Create User</button>
+        <CreateButton />
       </form>
-      <ul className="flex flex-col">
+      <ul className="flex flex-col gap-y-2.5">
         {users.map((user) => {
           return (
             <li key={user.id}>
-              <div className="flex gap-x-2.5">
-                {user.id}
-                <form action={deleteUser}>
-                  <input type="hidden" name="id" defaultValue={user.id} />
-                  <button type="submit">X</button>
-                </form>
-              </div>
+              <UserCard id={user.id} />
             </li>
           );
         })}

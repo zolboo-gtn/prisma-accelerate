@@ -5,7 +5,7 @@ import { prisma } from "@/database/prisma";
 
 import { createUser, deleteUser } from "./actions";
 
-const PrismaPage: React.FC = () => {
+const PrismaPage: React.Page = () => {
   const users = use(prisma.user.findMany());
 
   return (
