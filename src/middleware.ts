@@ -9,6 +9,4 @@ export const config = {
 export const middleware: NextMiddleware = async (request) => {
   const users = await prisma.user.findMany();
   const _users = await db.query.user.findMany();
-
-  console.log({ users, _users });
 };

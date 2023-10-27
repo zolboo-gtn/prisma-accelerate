@@ -9,8 +9,8 @@ const DrizzlePage: React.FC = () => {
   const users = use(db.query.user.findMany());
 
   return (
-    <main>
-      {`DrizzlePage`}
+    <main className="flex flex-col">
+      <h1>{`DrizzlePage`}</h1>
       <Link href="/prisma">{`to PrismaPage`}</Link>
       <form action={createUser}>
         <button type="submit">Create User</button>

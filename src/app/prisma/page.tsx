@@ -9,8 +9,8 @@ const PrismaPage: React.FC = () => {
   const users = use(prisma.user.findMany());
 
   return (
-    <main>
-      {`PrismaPage`}
+    <main className="flex flex-col">
+      <h1>{`PrismaPage`}</h1>
       <Link href="/drizzle">{`to DrizzlePage`}</Link>
 
       <form action={createUser}>
