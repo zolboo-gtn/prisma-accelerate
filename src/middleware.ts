@@ -7,5 +7,4 @@ export const config = {
 };
 export const middleware: NextMiddleware = async (request) => {
   const users = await prisma.user.findMany({ cacheStrategy: { ttl: 60 } });
-  console.log("middleware", { users });
 };
