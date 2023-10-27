@@ -1,15 +1,16 @@
 import { use } from "react";
 
-import prisma from "@/db";
+import { db } from "@/database/drizzle";
+import { prisma } from "@/database/prisma";
 
 import { createUser, deleteUser } from "./actions";
 
-const HomePage: React.FC = () => {
+const PrismaPage: React.FC = () => {
   const users = use(prisma.user.findMany());
 
   return (
     <main>
-      {`HOME PAGE`}
+      {`PrismaPage`}
       <form action={createUser}>
         <button type="submit">Create User</button>
       </form>
@@ -31,4 +32,4 @@ const HomePage: React.FC = () => {
     </main>
   );
 };
-export default HomePage;
+export default PrismaPage;

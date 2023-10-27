@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1698390592943,
+      "tag": "0000_friendly_mikhail_rasputin",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 "use server";
 
-import prisma from "@/db";
+import { prisma } from "@/database/prisma";
 import { revalidatePath } from "next/cache";
 
 export const createUser = async () => {
   await prisma.user.create({
     data: { id: new Date().getTime().toString() },
   });
-  revalidatePath("/", "page");
+  revalidatePath("/prisma", "page");
 };
 
 export const deleteUser = async (formData: FormData) => {
@@ -16,5 +16,5 @@ export const deleteUser = async (formData: FormData) => {
     return;
   }
   await prisma.user.delete({ where: { id } });
-  revalidatePath("/", "page");
+  revalidatePath("/prisma", "page");
 };
